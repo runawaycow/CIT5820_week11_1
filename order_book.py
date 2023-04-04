@@ -24,7 +24,7 @@ def process_order(order):
                 existing_order.filled = datetime.now()
                 order_obj.counterparty_id = existing_order.id
                 existing_order.counterparty_id = order_obj.id
-                if order_obj.buy_amount>existing_order.sell_amount and existing_order.buy_amount<order_obj.sell_amount:
+                if order_obj.buy_amount>existing_order.sell_amount:
                     order_r = {}
                     order_r['filled'] = None
                     order_r['creator_id'] = order_obj.id
@@ -40,7 +40,7 @@ def process_order(order):
                     #session.commit()
                     print('1:Child order added - 1')
 
-                elif existing_order.buy_amount>order_obj.sell_amount and order_obj.buy_amount<existing_order.sell_amount:
+                elif existing_order.buy_amount>order_obj.sell_amount:
                     order_r = {}
                     order_r['filled'] = None
                     order_r['creator_id'] = existing_order.id
@@ -57,6 +57,11 @@ def process_order(order):
                     print('2:Child order added - 2')
                 else:
                     print('3: Child order NOT created - 3')
+                    print(existing_order.buy_amount)
+                    print(order_obj.sell_amount)
+                    print(order_obj.buy_amount)
+                    print(existing_order.sell_amount)
+                    print('##########')
 
                 break
             #print('3: Child order NOT created - 3')
