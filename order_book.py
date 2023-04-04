@@ -38,6 +38,7 @@ def process_order(order):
                     order_r_obj = Order(**{f:order_r[f] for f in fields})
                     session.add(order_r_obj)
                     session.commit()
+                    print('1:Child order added')
 
                 elif existing_order.buy_amount>order_obj.sell_amount and order_obj.buy_amount<existing_order.sell_amount:
                     order_r = {}
@@ -52,6 +53,7 @@ def process_order(order):
                     order_r_obj = Order(**{f:order_r[f] for f in fields})
                     session.add(order_r_obj)
                     session.commit()
+                    print('2:Child order added')
                 break
         
     else:    
