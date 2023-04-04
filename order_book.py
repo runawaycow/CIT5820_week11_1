@@ -35,9 +35,9 @@ def process_order(order):
                     order_r['buy_amount'] = order_obj.buy_amount-existing_order.sell_amount
                     order_r['sell_amount'] = order_r['buy_amount'] * order_obj.sell_amount/order_obj.buy_amount
                     process_order(order_r)
-                    #order_r_obj = Order(**{f:order_r[f] for f in fields})
-                    #session.add(order_r_obj)
-                    #session.commit()
+                    order_r_obj = Order(**{f:order_r[f] for f in fields})
+                    session.add(order_r_obj)
+                    session.commit()
                     print('1:Child order added - 1')
 
                 elif existing_order.buy_amount>order_obj.sell_amount:
@@ -50,10 +50,10 @@ def process_order(order):
                     order_r['sell_currency'] = existing_order.sell_currency
                     order_r['buy_amount'] = existing_order.buy_amount-order_obj.sell_amount
                     order_r['sell_amount'] = order_r['buy_amount'] *existing_order.sell_amount/existing_order.buy_amount
-                    process_order(order_r)
-                    #order_r_obj = Order(**{f:order_r[f] for f in fields})
-                    #session.add(order_r_obj)
-                    #session.commit()
+                    #process_order(order_r)
+                    order_r_obj = Order(**{f:order_r[f] for f in fields})
+                    session.add(order_r_obj)
+                    session.commit()
                     print('2:Child order added - 2')
 
 
