@@ -55,7 +55,8 @@ def process_order(order):
                     #session.add(order_r_obj)
                     #session.commit()
                     print('2:Child order added - 2')
-                print('3: Child order NOT created - 3')
+                else：
+                    print('3: Child order NOT created - 3')
 
                 break
             #print('3: Child order NOT created - 3')
