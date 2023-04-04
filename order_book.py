@@ -17,7 +17,7 @@ def process_order(order):
         order_obj = Order( filled = None, sender_pk=order['sender_pk'],receiver_pk=order['receiver_pk'], buy_currency=order['buy_currency'], sell_currency=order['sell_currency'], buy_amount=order['buy_amount'], sell_amount=order['sell_amount'] )
         session.add(order_obj)
         session.commit()
-        print('Here!!!')
+        #print('Here!!!')
         for existing_order in session.query(Order).all():
             if order_obj.sell_amount * existing_order.sell_amount >= order_obj.buy_amount * existing_order.buy_amount and existing_order.buy_currency == order_obj.sell_currency and existing_order.sell_currency == order_obj.buy_currency and existing_order.filled == None:
                 order_obj.filled = datetime.now()
@@ -39,7 +39,7 @@ def process_order(order):
                     session.add(order_r_obj)
                     session.commit()
 
-                elif existing_order['buy_amount']>order_obj['sell_amount']:
+                elif existing_order.buy_amount>order_obj.sell_amount:
                     order_r = {}
                     order_r['filled'] = None
                     order_r['creator_id'] = existing_order.id
