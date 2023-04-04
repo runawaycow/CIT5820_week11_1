@@ -14,7 +14,7 @@ def process_order(order):
         order_obj = Order( filled = None, sender_pk=order['sender_pk'],receiver_pk=order['receiver_pk'], buy_currency=order['buy_currency'], sell_currency=order['sell_currency'], buy_amount=order['buy_amount'], sell_amount=order['sell_amount'] )
         
         for existing_order in session.query(existing_order).all():
-            if order_obj.sell_amount * existing_order.sell_amount >= order_obj.buy_amount * existing_order.buy_amount and existing_order.buy_currency == order.sell_currency and existing_order.sell_currency == order.buy_currency and existing_order.filled = None:
+            if order_obj.sell_amount * existing_order.sell_amount >= order_obj.buy_amount * existing_order.buy_amount and existing_order.buy_currency == order.sell_currency and existing_order.sell_currency == order.buy_currency and existing_order.filled == None:
                 order_obj.filled = func.now()
                 existing_order.filled = func.now()
                 order_obj.counterparty_id = existing_order.id
