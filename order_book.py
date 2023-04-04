@@ -57,10 +57,10 @@ def process_order(order):
                     print('2:Child order added - 2')
 
                 elif existing_order.buy_amount==order_obj.sell_amount or order_obj.buy_amount==existing_order.sell_amount:
-                    existing_order.buy_amount<order_obj.sell_amount
+                    if existing_order.buy_amount<order_obj.sell_amount:
                         order_remain = order_obj
                         order_complete = existing_order
-                    order_obj.buy_amount<existing_order.sell_amount
+                    elif order_obj.buy_amount<existing_order.sell_amount:
                         order_remain = existing_order
                         order_complete = order_obj
 
