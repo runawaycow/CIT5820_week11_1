@@ -55,8 +55,33 @@ def process_order(order):
                     #session.add(order_r_obj)
                     #session.commit()
                     print('2:Child order added - 2')
+
+                elif existing_order.buy_amount==order_obj.sell_amount or order_obj.buy_amount==existing_order.sell_amount:
+                    existing_order.buy_amount<order_obj.sell_amount
+                        order_remain = order_obj
+                        order_complete = existing_order
+                    order_obj.buy_amount<existing_order.sell_amount
+                        order_remain = existing_order
+                        order_complete = order_obj
+
+                    order_r = {}
+                    order_r['filled'] = None
+                    order_r['creator_id'] = order_remain.id
+                    order_r['sender_pk'] = order_remain.sender_pk
+                    order_r['receiver_pk'] = order_remain.receiver_pk
+                    order_r['buy_currency'] = order_remain.buy_currency
+                    order_r['sell_currency'] = order_remain.sell_currency
+                    order_r['buy_amount'] = order_remain.buy_amount-order_complete.sell_amount
+                    order_r['sell_amount'] = order_remain.sell_amount-order_complete.buy_amount
+                    process_order(order_r)
+                    #order_r_obj = Order(**{f:order_r[f] for f in fields})
+                    #session.add(order_r_obj)
+                    #session.commit()
+                    print('3:Child order added - 4')
+
+
                 else:
-                    print('3: Child order NOT created - 3')
+                    print('4: Child order NOT created - 4')
                     print(existing_order.buy_amount)
                     print(order_obj.sell_amount)
                     print(order_obj.buy_amount)
