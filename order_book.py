@@ -13,7 +13,7 @@ def process_order(order):
     if all(key in order for key in ['sender_pk','buy_amount','sell_amount', 'receiver_pk', 'buy_currency', 'sell_currency']):
         order_obj = Order( filled = None, sender_pk=order['sender_pk'],receiver_pk=order['receiver_pk'], buy_currency=order['buy_currency'], sell_currency=order['sell_currency'], buy_amount=order['buy_amount'], sell_amount=order['sell_amount'] )
         
-        for existing_order in session.query(existing_order).all():
+        for existing_order in session.query(Order).all():
             if order_obj.sell_amount * existing_order.sell_amount >= order_obj.buy_amount * existing_order.buy_amount and existing_order.buy_currency == order.sell_currency and existing_order.sell_currency == order.buy_currency and existing_order.filled == None:
                 order_obj.filled = func.now()
                 existing_order.filled = func.now()
