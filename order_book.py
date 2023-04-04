@@ -20,8 +20,8 @@ def process_order(order):
         print('Here!!!')
         for existing_order in session.query(Order).all():
             if order_obj.sell_amount * existing_order.sell_amount >= order_obj.buy_amount * existing_order.buy_amount and existing_order.buy_currency == order_obj.sell_currency and existing_order.sell_currency == order_obj.buy_currency and existing_order.filled == None:
-                order_obj.filled = func.now()
-                existing_order.filled = func.now()
+                order_obj.filled = datetime.now()
+                existing_order.filled = datetime.now()
                 order_obj.counterparty_id = existing_order.id
                 existing_order.counterparty_id = order_obj.id
                 if order_obj.buy_amount>existing_order.sell_amount:
